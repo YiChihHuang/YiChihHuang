@@ -442,13 +442,31 @@
             draw();
         }
 
+        // Start game with initial direction
+        function startGameWithDirection(dir) {
+            initGame();
+            nextDirection = { ...dir };
+            direction = { ...dir };
+            if (gameLoop) clearInterval(gameLoop);
+            gameLoop = setInterval(update, gameSpeed);
+            startBtn.textContent = '重新開始';
+            draw();
+        }
+
         // Handle keyboard input
         document.addEventListener('keydown', (e) => {
+            const isArrowKey = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'W', 'a', 'A', 's', 'S', 'd', 'D'].includes(e.key);
+
             // Auto-start game when pressing arrow keys
-            if (!gameLoop && !isGameOver) {
-                if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'W', 'a', 'A', 's', 'S', 'd', 'D'].includes(e.key)) {
-                    startGame();
-                }
+            if (!gameLoop && isArrowKey) {
+                let dir = { x: 0, y: 0 };
+                if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') dir = { x: 0, y: -1 };
+                else if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') dir = { x: 0, y: 1 };
+                else if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') dir = { x: -1, y: 0 };
+                else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') dir = { x: 1, y: 0 };
+                startGameWithDirection(dir);
+                e.preventDefault();
+                return;
             }
 
             if (isGameOver) return;
