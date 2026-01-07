@@ -444,6 +444,13 @@
 
         // Handle keyboard input
         document.addEventListener('keydown', (e) => {
+            // Auto-start game when pressing arrow keys
+            if (!gameLoop && !isGameOver) {
+                if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'W', 'a', 'A', 's', 'S', 'd', 'D'].includes(e.key)) {
+                    startGame();
+                }
+            }
+
             if (isGameOver) return;
 
             switch (e.key) {
