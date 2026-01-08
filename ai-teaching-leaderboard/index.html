@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教學怪物 - AI 教學 Leaderboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="monster-icon">🐲</span>
+            <span class="brand-text">教學怪物</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="nav-link active" data-page="home">首頁</a>
+            <a href="#battle" class="nav-link" data-page="battle">教學擂台</a>
+            <a href="#leaderboard" class="nav-link" data-page="leaderboard">排行榜</a>
+            <a href="#provider" class="nav-link" data-page="provider">AI 參賽者</a>
+            <a href="#about" class="nav-link" data-page="about">關於</a>
+        </div>
+        <div class="nav-auth">
+            <button class="btn btn-outline" id="loginBtn">登入</button>
+            <button class="btn btn-primary" id="registerBtn">註冊</button>
+        </div>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">🏆 AI 教學影片競技場</div>
+                    <h1 class="hero-title">
+                        <span class="gradient-text">教學怪物</span>
+                        <br>AI Teaching Arena
+                    </h1>
+                    <p class="hero-subtitle">
+                        讓最強的 AI 教學模型一決高下！<br>
+                        觀看、比較、投票 — 由你決定誰是最強教學 AI
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalBattles">12,847</span>
+                            <span class="stat-label">場對決</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalVoters">3,521</span>
+                            <span class="stat-label">位評審</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalModels">24</span>
+                            <span class="stat-label">個模型</span>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn btn-large btn-primary" onclick="navigateTo('battle')">
+                            <i class="fas fa-play"></i> 開始評比
+                        </button>
+                        <button class="btn btn-large btn-outline" onclick="navigateTo('leaderboard')">
+                            <i class="fas fa-trophy"></i> 查看排行
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="monster-arena">
+                        <div class="arena-ring"></div>
+                        <div class="monster monster-left">🤖</div>
+                        <div class="vs-badge">VS</div>
+                        <div class="monster monster-right">🎓</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How it Works -->
+            <section class="how-it-works">
+                <h2 class="section-title">運作方式</h2>
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-icon">📝</div>
+                        <h3>1. 提出學習需求</h3>
+                        <p>輸入你想學習的主題和你的背景，讓 AI 為你量身打造教學內容</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">🎬</div>
+                        <h3>2. 觀看對決影片</h3>
+                        <p>系統隨機配對兩個 AI 生成的教學影片，盲測確保公平</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">🗳️</div>
+                        <h3>3. 投票評分</h3>
+                        <p>根據多項指標評選出更好的教學影片，累積 ELO 積分</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">🏆</div>
+                        <h3>4. 排行榜更新</h3>
+                        <p>即時更新排名，最強教學 AI 將登上榮耀殿堂</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Models -->
+            <section class="featured-section">
+                <h2 class="section-title">🔥 熱門教學 AI</h2>
+                <div class="featured-models">
+                    <div class="model-card gold">
+                        <div class="rank-badge">🥇</div>
+                        <div class="model-avatar">🐉</div>
+                        <h3 class="model-name">DragonTeach Pro</h3>
+                        <div class="model-elo">ELO: 1847</div>
+                        <div class="model-stats">
+                            <span><i class="fas fa-trophy"></i> 勝率 78%</span>
+                            <span><i class="fas fa-gamepad"></i> 1,234 場</span>
+                        </div>
+                        <div class="model-specialty">擅長：深度學習、數學</div>
+                    </div>
+                    <div class="model-card silver">
+                        <div class="rank-badge">🥈</div>
+                        <div class="model-avatar">🦊</div>
+                        <h3 class="model-name">FoxMentor AI</h3>
+                        <div class="model-elo">ELO: 1792</div>
+                        <div class="model-stats">
+                            <span><i class="fas fa-trophy"></i> 勝率 71%</span>
+                            <span><i class="fas fa-gamepad"></i> 987 場</span>
+                        </div>
+                        <div class="model-specialty">擅長：程式設計、演算法</div>
+                    </div>
+                    <div class="model-card bronze">
+                        <div class="rank-badge">🥉</div>
+                        <div class="model-avatar">🦉</div>
+                        <h3 class="model-name">WisdomOwl</h3>
+                        <div class="model-elo">ELO: 1756</div>
+                        <div class="model-stats">
+                            <span><i class="fas fa-trophy"></i> 勝率 68%</span>
+                            <span><i class="fas fa-gamepad"></i> 856 場</span>
+                        </div>
+                        <div class="model-specialty">擅長：物理、化學</div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Battle Page -->
+        <section id="battle" class="page">
+            <div class="battle-container">
+                <!-- Step 1: Learning Request -->
+                <div class="battle-step" id="step1">
+                    <div class="step-header">
+                        <h2><span class="step-num">1</span> 提出你的學習需求</h2>
+                        <p>告訴我們你想學什麼，AI 教學怪物們將為你準備精彩的教學對決！</p>
+                    </div>
+                    <div class="learning-form">
+                        <div class="form-group">
+                            <label for="topic">
+                                <i class="fas fa-book"></i> 學習主題
+                            </label>
+                            <input type="text" id="topic" placeholder="例如：Transformer 架構中的 Self-Attention 機制">
+                            <div class="topic-suggestions">
+                                <span class="topic-tag" onclick="setTopic('微積分基礎：極限與連續')">微積分基礎</span>
+                                <span class="topic-tag" onclick="setTopic('Python 資料結構：List 與 Dictionary')">Python 資料結構</span>
+                                <span class="topic-tag" onclick="setTopic('牛頓三大運動定律')">牛頓運動定律</span>
+                                <span class="topic-tag" onclick="setTopic('機器學習：梯度下降法')">梯度下降法</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="persona">
+                                <i class="fas fa-user-graduate"></i> 你的背景
+                            </label>
+                            <textarea id="persona" rows="3" placeholder="例如：我是高中一年級學生，沒學過微積分，但懂基礎矩陣運算"></textarea>
+                            <div class="persona-presets">
+                                <button class="preset-btn" onclick="setPersona('beginner')">🌱 初學者</button>
+                                <button class="preset-btn" onclick="setPersona('intermediate')">📚 有基礎</button>
+                                <button class="preset-btn" onclick="setPersona('advanced')">🎓 進階學習</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">
+                                <i class="fas fa-folder"></i> 學科分類
+                            </label>
+                            <select id="category">
+                                <option value="">選擇學科分類</option>
+                                <option value="math">📐 數學</option>
+                                <option value="cs">💻 電腦科學</option>
+                                <option value="physics">⚛️ 物理</option>
+                                <option value="chemistry">🧪 化學</option>
+                                <option value="biology">🧬 生物</option>
+                                <option value="language">📖 語言學習</option>
+                                <option value="business">📊 商業管理</option>
+                                <option value="art">🎨 藝術設計</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary btn-large" onclick="startBattle()">
+                            <i class="fas fa-bolt"></i> 開始教學對決！
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Loading -->
+                <div class="battle-step hidden" id="step2">
+                    <div class="loading-arena">
+                        <div class="loading-animation">
+                            <div class="loading-monster left">🤖</div>
+                            <div class="loading-vs">
+                                <div class="pulse-ring"></div>
+                                <span>VS</span>
+                            </div>
+                            <div class="loading-monster right">🎯</div>
+                        </div>
+                        <h2>教學怪物們正在準備中...</h2>
+                        <p>AI 正在根據你的需求生成教學影片</p>
+                        <div class="loading-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="loadingProgress"></div>
+                            </div>
+                            <span class="progress-text" id="progressText">正在分析學習需求...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Battle Arena -->
+                <div class="battle-step hidden" id="step3">
+                    <div class="arena-header">
+                        <h2>🏟️ 教學擂台</h2>
+                        <div class="battle-topic">
+                            <span class="label">主題：</span>
+                            <span class="value" id="battleTopic"></span>
+                        </div>
+                    </div>
+
+                    <div class="video-arena">
+                        <div class="video-container" id="videoA">
+                            <div class="video-header">
+                                <span class="video-label">影片 A</span>
+                                <span class="video-badge mystery">❓ 神秘教學者</span>
+                            </div>
+                            <div class="video-player">
+                                <div class="mock-video">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>點擊播放</span>
+                                </div>
+                            </div>
+                            <div class="video-controls">
+                                <button class="control-btn"><i class="fas fa-play"></i></button>
+                                <div class="progress-slider">
+                                    <div class="slider-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="time">0:00 / 5:32</span>
+                                <button class="control-btn"><i class="fas fa-volume-up"></i></button>
+                                <button class="control-btn"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="vs-divider">
+                            <div class="vs-circle">VS</div>
+                        </div>
+
+                        <div class="video-container" id="videoB">
+                            <div class="video-header">
+                                <span class="video-label">影片 B</span>
+                                <span class="video-badge mystery">❓ 神秘教學者</span>
+                            </div>
+                            <div class="video-player">
+                                <div class="mock-video">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>點擊播放</span>
+                                </div>
+                            </div>
+                            <div class="video-controls">
+                                <button class="control-btn"><i class="fas fa-play"></i></button>
+                                <div class="progress-slider">
+                                    <div class="slider-fill" style="width: 0%"></div>
+                                </div>
+                                <span class="time">0:00 / 6:15</span>
+                                <button class="control-btn"><i class="fas fa-volume-up"></i></button>
+                                <button class="control-btn"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Judge Section -->
+                    <div class="ai-judge-section">
+                        <div class="ai-judge-header">
+                            <span class="ai-icon">🤖</span>
+                            <h3>AI 助教評分</h3>
+                            <span class="ai-badge">GPT-4 Vision</span>
+                        </div>
+                        <div class="ai-scores">
+                            <div class="ai-score-card">
+                                <h4>影片 A</h4>
+                                <div class="score-items">
+                                    <div class="score-item">
+                                        <span class="score-label">內容準確性</span>
+                                        <div class="score-bar"><div class="score-fill" style="width: 85%"></div></div>
+                                        <span class="score-value">85</span>
+                                    </div>
+                                    <div class="score-item">
+                                        <span class="score-label">講解清晰度</span>
+                                        <div class="score-bar"><div class="score-fill" style="width: 78%"></div></div>
+                                        <span class="score-value">78</span>
+                                    </div>
+                                    <div class="score-item">
+                                        <span class="score-label">視覺呈現</span>
+                                        <div class="score-bar"><div class="score-fill" style="width: 82%"></div></div>
+                                        <span class="score-value">82</span>
+                                    </div>
+                                    <div class="score-item">
+                                        <span class="score-label">適合程度</span>
+                                        <div class="score-bar"><div class="score-fill" style="width: 80%"></div></div>
+                                        <span class="score-value">80</span>
+                                    </div>
+                                </div>
+                                <div class="total-score">總分：<strong>81.3</strong></div>
+                            </div>
+                            <div class="ai-score-card">
+                                <h4>影片 B</h4>
+                                <div class="score-items">
+                                    <div class="score-item">
+                                        <span class="score-label">內容準確性</span>
+                                        <div class="score-bar"><div class="score-fill" style="width: 88%"></div></div>
+                                        <span class="score-value">88</span>
+                                    </div>
+                                    <div class="score-item">
+                                        <span class="score-label">講解清晰度</span>
+                                        <div class="score-bar"><div class="score-fill" style="width: 84%"></div></div>
+                                        <span class="score-value">84</span>
+                                    </div>
+                                    <div class="score-item">
+                                        <span class="score-label">視覺呈現</span>
+                                        <div class="score-bar"><div class="score-fill" style="width: 79%"></div></div>
+                                        <span class="score-value">79</span>
+                                    </div>
+                                    <div class="score-item">
+                                        <span class="score-label">適合程度</span>
+                                        <div class="score-bar"><div class="score-fill" style="width: 86%"></div></div>
+                                        <span class="score-value">86</span>
+                                    </div>
+                                </div>
+                                <div class="total-score">總分：<strong>84.3</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Voting Section -->
+                    <div class="voting-section">
+                        <h3>🗳️ 投下你神聖的一票</h3>
+                        <p>選出你認為更好的教學影片</p>
+                        <div class="voting-buttons">
+                            <button class="vote-btn vote-a" onclick="submitVote('A')">
+                                <span class="vote-icon">👈</span>
+                                <span class="vote-text">影片 A 較好</span>
+                            </button>
+                            <button class="vote-btn vote-tie" onclick="submitVote('tie')">
+                                <span class="vote-icon">🤝</span>
+                                <span class="vote-text">平手</span>
+                            </button>
+                            <button class="vote-btn vote-b" onclick="submitVote('B')">
+                                <span class="vote-text">影片 B 較好</span>
+                                <span class="vote-icon">👉</span>
+                            </button>
+                        </div>
+                        <button class="btn btn-outline skip-btn" onclick="skipBattle()">
+                            <i class="fas fa-forward"></i> 跳過這場
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Results -->
+                <div class="battle-step hidden" id="step4">
+                    <div class="results-container">
+                        <div class="results-header">
+                            <h2>🎉 感謝你的投票！</h2>
+                            <p>揭曉神秘教學者的真實身份</p>
+                        </div>
+
+                        <div class="reveal-cards">
+                            <div class="reveal-card winner" id="revealA">
+                                <div class="reveal-badge">你選擇的</div>
+                                <div class="model-reveal">
+                                    <span class="model-icon">🐉</span>
+                                    <h3>DragonTeach Pro</h3>
+                                </div>
+                                <div class="elo-change positive">
+                                    <i class="fas fa-arrow-up"></i> ELO +16
+                                </div>
+                                <div class="new-elo">新 ELO: 1863</div>
+                            </div>
+
+                            <div class="vs-result">VS</div>
+
+                            <div class="reveal-card loser" id="revealB">
+                                <div class="model-reveal">
+                                    <span class="model-icon">🦊</span>
+                                    <h3>FoxMentor AI</h3>
+                                </div>
+                                <div class="elo-change negative">
+                                    <i class="fas fa-arrow-down"></i> ELO -16
+                                </div>
+                                <div class="new-elo">新 ELO: 1776</div>
+                            </div>
+                        </div>
+
+                        <div class="community-stats">
+                            <h4>社群投票統計</h4>
+                            <div class="community-bar">
+                                <div class="bar-a" style="width: 62%">
+                                    <span>A: 62%</span>
+                                </div>
+                                <div class="bar-b" style="width: 38%">
+                                    <span>B: 38%</span>
+                                </div>
+                            </div>
+                            <p>共 847 人參與此主題投票</p>
+                        </div>
+
+                        <div class="supplementary-materials">
+                            <h4>📚 輔助教材下載</h4>
+                            <div class="materials-grid">
+                                <a href="#" class="material-item">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>教學投影片.pdf</span>
+                                </a>
+                                <a href="#" class="material-item">
+                                    <i class="fas fa-file-code"></i>
+                                    <span>範例程式碼.py</span>
+                                </a>
+                                <a href="#" class="material-item">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>學習講義.md</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="results-actions">
+                            <button class="btn btn-primary btn-large" onclick="newBattle()">
+                                <i class="fas fa-redo"></i> 再來一場
+                            </button>
+                            <button class="btn btn-outline" onclick="navigateTo('leaderboard')">
+                                <i class="fas fa-trophy"></i> 查看排行榜
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leaderboard Page -->
+        <section id="leaderboard" class="page">
+            <div class="leaderboard-container">
+                <div class="leaderboard-header">
+                    <h1>🏆 教學怪物排行榜</h1>
+                    <p>AI 教學模型實力排名 - 由社群投票決定</p>
+                </div>
+
+                <div class="leaderboard-filters">
+                    <div class="filter-group">
+                        <label>學科分類</label>
+                        <select id="filterCategory">
+                            <option value="all">全部學科</option>
+                            <option value="math">📐 數學</option>
+                            <option value="cs">💻 電腦科學</option>
+                            <option value="physics">⚛️ 物理</option>
+                            <option value="chemistry">🧪 化學</option>
+                            <option value="language">📖 語言</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>時間範圍</label>
+                        <select id="filterTime">
+                            <option value="all">歷史總榜</option>
+                            <option value="month">本月</option>
+                            <option value="week">本週</option>
+                            <option value="day">今日</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>排序方式</label>
+                        <select id="filterSort">
+                            <option value="elo">ELO 分數</option>
+                            <option value="winrate">勝率</option>
+                            <option value="battles">對戰數</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="leaderboard-table">
+                    <div class="table-header">
+                        <div class="col-rank">排名</div>
+                        <div class="col-model">模型</div>
+                        <div class="col-elo">ELO</div>
+                        <div class="col-winrate">勝率</div>
+                        <div class="col-battles">對戰數</div>
+                        <div class="col-trend">趨勢</div>
+                        <div class="col-specialty">擅長領域</div>
+                    </div>
+                    <div class="table-body" id="leaderboardBody">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="leaderboard-pagination">
+                    <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Provider Page -->
+        <section id="provider" class="page">
+            <div class="provider-container">
+                <div class="provider-hero">
+                    <h1>🤖 成為 AI 參賽者</h1>
+                    <p>讓你的 AI 教學模型加入競技場，與全球頂尖模型一較高下！</p>
+                </div>
+
+                <div class="provider-sections">
+                    <!-- API Specification -->
+                    <div class="provider-section">
+                        <h2><i class="fas fa-code"></i> API 規格說明</h2>
+                        <div class="api-spec">
+                            <div class="spec-block">
+                                <h3>📥 輸入 (Input)</h3>
+                                <p>主辦方將透過 HTTP POST 傳送 JSON 格式的「學習需求」：</p>
+                                <div class="code-block">
+<pre>{
+  "request_id": "uuid-string",
+  "topic": "Transformer 架構中的 Self-Attention 機制",
+  "student_persona": "我是高中一年級學生，沒學過微積分，但懂基礎矩陣運算",
+  "category": "cs",
+  "preferred_duration": "5-10min",  // optional
+  "language": "zh-TW"
+}</pre>
+                                </div>
+                            </div>
+
+                            <div class="spec-block">
+                                <h3>📤 輸出 (Output)</h3>
+                                <p>您的 API 應回傳以下 JSON 格式：</p>
+                                <div class="code-block">
+<pre>{
+  "request_id": "uuid-string",
+  "status": "success",
+  "video": {
+    "url": "https://your-cdn.com/video.mp4",
+    "duration_seconds": 342,
+    "format": "mp4",
+    "resolution": "1080p"
+  },
+  "supplementary_materials": [  // Optional
+    {
+      "type": "slides",
+      "url": "https://your-cdn.com/slides.pdf",
+      "title": "教學投影片"
+    },
+    {
+      "type": "code",
+      "url": "https://your-cdn.com/example.py",
+      "title": "範例程式碼"
+    }
+  ],
+  "metadata": {
+    "style": "slides_voiceover",  // slides_voiceover | avatar | animation
+    "ai_model": "your-model-name",
+    "generation_time_seconds": 120
+  }
+}</pre>
+                                </div>
+                            </div>
+
+                            <div class="spec-block">
+                                <h3>🎨 影片風格選項</h3>
+                                <div class="style-options">
+                                    <div class="style-card">
+                                        <span class="style-icon">📊</span>
+                                        <h4>動態投影片</h4>
+                                        <p>Slides + Voiceover</p>
+                                    </div>
+                                    <div class="style-card">
+                                        <span class="style-icon">🧑‍🏫</span>
+                                        <h4>AI 數位人</h4>
+                                        <p>Digital Avatar</p>
+                                    </div>
+                                    <div class="style-card">
+                                        <span class="style-icon">🎬</span>
+                                        <h4>動畫演示</h4>
+                                        <p>Motion Graphics</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Registration Form -->
+                    <div class="provider-section">
+                        <h2><i class="fas fa-user-plus"></i> 註冊參賽</h2>
+                        <form class="registration-form" id="providerForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="modelName">模型名稱 *</label>
+                                    <input type="text" id="modelName" placeholder="例如：DragonTeach Pro" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="teamName">團隊/公司名稱 *</label>
+                                    <input type="text" id="teamName" placeholder="例如：AI Labs Inc." required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="apiEndpoint">API Endpoint *</label>
+                                <input type="url" id="apiEndpoint" placeholder="https://api.example.com/generate-video" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="apiKey">API 認證金鑰 (我們會安全儲存)</label>
+                                <input type="password" id="apiKey" placeholder="Bearer token 或 API key">
+                            </div>
+                            <div class="form-group">
+                                <label for="modelDescription">模型描述</label>
+                                <textarea id="modelDescription" rows="3" placeholder="簡短描述你的 AI 教學模型特色與技術"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactEmail">聯絡信箱 *</label>
+                                    <input type="email" id="contactEmail" placeholder="contact@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="website">官方網站</label>
+                                    <input type="url" id="website" placeholder="https://example.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>擅長學科 (可多選)</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialty" value="math"> 📐 數學
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialty" value="cs"> 💻 電腦科學
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialty" value="physics"> ⚛️ 物理
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialty" value="chemistry"> 🧪 化學
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialty" value="biology"> 🧬 生物
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="specialty" value="language"> 📖 語言
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-item agreement">
+                                    <input type="checkbox" id="agreeTerms" required>
+                                    我同意 <a href="#">參賽條款</a> 與 <a href="#">API 使用規範</a>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-rocket"></i> 提交申請
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- API Testing -->
+                    <div class="provider-section">
+                        <h2><i class="fas fa-flask"></i> API 測試工具</h2>
+                        <div class="api-tester">
+                            <div class="test-input">
+                                <label>測試你的 API Endpoint</label>
+                                <div class="input-with-btn">
+                                    <input type="url" id="testEndpoint" placeholder="https://api.example.com/generate-video">
+                                    <button class="btn btn-primary" onclick="testAPI()">
+                                        <i class="fas fa-paper-plane"></i> 測試
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="test-payload">
+                                <label>測試 Payload</label>
+                                <div class="code-block editable">
+<pre contenteditable="true" id="testPayload">{
+  "request_id": "test-001",
+  "topic": "什麼是變數？",
+  "student_persona": "程式設計初學者",
+  "category": "cs",
+  "language": "zh-TW"
+}</pre>
+                                </div>
+                            </div>
+                            <div class="test-result hidden" id="testResult">
+                                <label>回應結果</label>
+                                <div class="code-block result">
+                                    <pre id="testResultContent"></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="about-container">
+                <div class="about-hero">
+                    <h1>關於教學怪物</h1>
+                    <p class="tagline">打造 AI 教學影片的公開競技場</p>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-section">
+                        <h2>🎯 我們的使命</h2>
+                        <p>
+                            教學怪物是一個開放的 AI 教學影片評測平台，靈感來自 Chatbot Arena 的成功模式。
+                            我們相信，透過公開、公平的競爭，可以推動 AI 教學技術的快速進步，
+                            最終讓每個人都能享受到最優質的 AI 個人化教學體驗。
+                        </p>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>⚙️ 評分機制</h2>
+                        <div class="mechanism-cards">
+                            <div class="mechanism-card">
+                                <h3>ELO 評分系統</h3>
+                                <p>採用類似西洋棋的 ELO 評分系統，每場對決後根據勝負與雙方實力差距動態調整分數</p>
+                            </div>
+                            <div class="mechanism-card">
+                                <h3>盲測機制</h3>
+                                <p>評審時隱藏 AI 模型身份，確保評分完全基於教學品質而非品牌偏見</p>
+                            </div>
+                            <div class="mechanism-card">
+                                <h3>多維度評估</h3>
+                                <p>結合人工投票與 AI 助教評分，從準確性、清晰度、視覺呈現、適合程度等多角度評估</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>📊 平台數據</h2>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon">🎬</div>
+                                <div class="stat-value">50,000+</div>
+                                <div class="stat-desc">教學影片生成</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">⚔️</div>
+                                <div class="stat-value">12,847</div>
+                                <div class="stat-desc">場對決完成</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">👥</div>
+                                <div class="stat-value">3,521</div>
+                                <div class="stat-desc">位活躍評審</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">🤖</div>
+                                <div class="stat-value">24</div>
+                                <div class="stat-desc">個參賽模型</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>🤝 合作夥伴</h2>
+                        <div class="partners">
+                            <div class="partner-logo">🏫 NTU AI Lab</div>
+                            <div class="partner-logo">🔬 Academia Sinica</div>
+                            <div class="partner-logo">💡 AI Foundation</div>
+                            <div class="partner-logo">🎓 EdTech Alliance</div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>📬 聯絡我們</h2>
+                        <div class="contact-info">
+                            <p><i class="fas fa-envelope"></i> contact@teaching-monster.ai</p>
+                            <p><i class="fab fa-github"></i> github.com/teaching-monster</p>
+                            <p><i class="fab fa-twitter"></i> @TeachingMonster</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            <h2>登入</h2>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">電子郵件</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">密碼</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">登入</button>
+                <div class="auth-divider">
+                    <span>或使用以下方式登入</span>
+                </div>
+                <div class="social-login">
+                    <button type="button" class="btn btn-social google">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button type="button" class="btn btn-social github">
+                        <i class="fab fa-github"></i> GitHub
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('registerModal')">&times;</button>
+            <h2>註冊帳號</h2>
+            <div class="role-selector">
+                <button class="role-btn active" data-role="learner">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>學習者</span>
+                </button>
+                <button class="role-btn" data-role="provider">
+                    <i class="fas fa-robot"></i>
+                    <span>AI 提供者</span>
+                </button>
+            </div>
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="registerName">名稱</label>
+                    <input type="text" id="registerName" placeholder="你的名字">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">電子郵件</label>
+                    <input type="email" id="registerEmail" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">密碼</label>
+                    <input type="password" id="registerPassword" placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">建立帳號</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon"></span>
+        <span class="toast-message"></span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
