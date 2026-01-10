@@ -1,0 +1,33 @@
+# AutoCourseGen - Full-stack AI Course Video Generator
+# Core Dependencies
+
+# LLM Provider
+google-generativeai>=0.8.0
+
+# Slide Generation
+python-pptx>=1.0.0
+
+# Text-to-Speech (Taiwan accent)
+edge-tts>=6.1.0
+
+# Video Composition
+moviepy>=1.0.3
+
+# Numerical & Scientific Computing
+numpy>=1.24.0
+scipy>=1.11.0
+
+# Image Processing
+Pillow>=10.0.0
+pdf2image>=1.16.0
+
+# Configuration
+python-dotenv>=1.0.0
+PyYAML>=6.0
+
+# CLI
+click>=8.1.0
+rich>=13.0.0
+
+# Async support
+aiofiles>=23.0.0

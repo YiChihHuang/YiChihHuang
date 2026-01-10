@@ -1,0 +1,79 @@
+# AutoCourseGen Configuration
+# ============================
+
+# LLM Provider Settings
+llm:
+  # Default provider: gemini, openai, anthropic
+  default_provider: gemini
+
+  gemini:
+    # Model for text generation
+    text_model: gemini-1.5-pro
+    # Model for vision tasks (coordinate extraction)
+    vision_model: gemini-1.5-pro
+    # Temperature for generation (0.0-1.0)
+    temperature: 0.7
+    # Maximum output tokens
+    max_tokens: 8192
+    # Enable Google Search grounding (if available)
+    enable_search: true
+
+# TTS Settings
+tts:
+  # Voice model for edge-tts
+  # zh-TW-HsiaoChenNeural: Taiwan female voice (sweet accent)
+  # zh-TW-YunJheNeural: Taiwan male voice
+  voice: zh-TW-HsiaoChenNeural
+  # Speech rate adjustment (-50% to +50%)
+  rate: "+0%"
+  # Volume adjustment (-50% to +50%)
+  volume: "+0%"
+
+# Video Settings
+video:
+  # Output resolution
+  width: 1920
+  height: 1080
+  # Frames per second
+  fps: 30
+  # Background color (hex)
+  background_color: "#FFFFFF"
+
+# Slide Settings
+slides:
+  # Slide dimensions (16:9 ratio)
+  width_inches: 13.333
+  height_inches: 7.5
+  # Theme colors
+  primary_color: "#2B579A"
+  secondary_color: "#5B9BD5"
+  accent_color: "#ED7D31"
+  # Font settings
+  title_font: "Microsoft JhengHei"
+  body_font: "Microsoft JhengHei"
+  code_font: "Consolas"
+
+# Mouse Cursor Animation
+cursor:
+  # Cursor image file (will auto-generate if not found)
+  image: "cursor.png"
+  # Cursor size (pixels)
+  size: 32
+  # Animation smoothness (higher = smoother)
+  bezier_steps: 60
+  # Movement speed factor (1.0 = normal)
+  speed_factor: 1.0
+
+# Workspace Settings
+workspace:
+  # Directory for intermediate files
+  output_dir: "workspace"
+  # Enable resumable mode (check for existing files)
+  resumable: true
+  # Ask before skipping existing files
+  ask_before_skip: true
+
+# Logging
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
